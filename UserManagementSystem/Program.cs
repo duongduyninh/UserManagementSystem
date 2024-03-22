@@ -23,6 +23,9 @@ builder.Services.AddIdentity<AppUser , IdentityRole>()
                 .AddDefaultTokenProviders();
 */
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IPostRopository, PostRepository>();
+builder.Services.AddScoped<IDbImportExportRepository , DbImportExportRepository>();
+
 
 builder.Services.AddCors(options =>
         options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod())

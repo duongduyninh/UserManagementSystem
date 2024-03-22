@@ -1,12 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace UserManagementSystem.Models.Entities
+namespace UserManagementSystem.Models
 {
-    [Table("Posts")]
-    public class Post
+    public class ExportPostModel
     {
-        [Key]
         public Guid Id { get; set; }
         [Required]
         public string? title { get; set; }
@@ -15,8 +12,6 @@ namespace UserManagementSystem.Models.Entities
         [Required]
         public Guid UserId { get; set; }
         [Required]
-        public string? Status { get; set;}
-
-        public User User { get; set; }
+        public string? Status { get; set; }
     }
 }

@@ -10,3 +10,4 @@ namespace UserManagementSystem.Repositories
         public Task<List<ListUserModel>> ListUserAsync();
     }
 }
+        

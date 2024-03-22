@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UserManagementSystem.Data;
 
@@ -11,9 +12,11 @@ using UserManagementSystem.Data;
 namespace UserManagementSystem.Migrations
 {
     [DbContext(typeof(ManagementSystemContext))]
-    partial class ManagementSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20240321070427_adnew789")]
+    partial class adnew789
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,6 +31,9 @@ namespace UserManagementSystem.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("IdUser")
+                        .HasColumnType("int");
+
                     b.Property<string>("NameAuthor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -36,16 +42,11 @@ namespace UserManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -67,22 +68,22 @@ namespace UserManagementSystem.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ffd7e0d7-2623-4fe0-925e-cc96a1b1d06f"),
+                            Id = new Guid("1aa358b9-af20-438b-bb45-05027de24d87"),
                             NameRole = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("084e08eb-75cf-420e-a9aa-46740f917a38"),
+                            Id = new Guid("79e94fa0-7ccc-4f35-a5fe-769deabcfc79"),
                             NameRole = "Manager"
                         },
                         new
                         {
-                            Id = new Guid("876a39de-4e4e-429b-8883-d85af31e4f01"),
+                            Id = new Guid("99d66f10-b364-4c22-9366-30027f0f1f22"),
                             NameRole = "Staff"
                         },
                         new
                         {
-                            Id = new Guid("086bd35e-60f1-4391-8be6-ed17e1979302"),
+                            Id = new Guid("a2984f5b-fd2a-4e5b-a849-e8902dd90a44"),
                             NameRole = "Customer"
                         });
                 });
@@ -125,17 +126,6 @@ namespace UserManagementSystem.Migrations
                     b.ToTable("UserRole");
                 });
 
-            modelBuilder.Entity("UserManagementSystem.Models.Entities.Post", b =>
-                {
-                    b.HasOne("UserManagementSystem.Models.Entities.User", "User")
-                        .WithMany("Posts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("UserManagementSystem.Models.Entities.UserRole", b =>
                 {
                     b.HasOne("UserManagementSystem.Models.Entities.Role", "Role")
@@ -162,8 +152,6 @@ namespace UserManagementSystem.Migrations
 
             modelBuilder.Entity("UserManagementSystem.Models.Entities.User", b =>
                 {
-                    b.Navigation("Posts");
-
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

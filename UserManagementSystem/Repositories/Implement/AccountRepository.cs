@@ -63,7 +63,8 @@ namespace UserManagementSystem.Repositories.Implement
                     return new InfLoginModel
                     {
                         Name = user.Name,
-                        NameRole = getNameRole.NameRole
+                        NameRole = getNameRole.NameRole ,
+                        UserId = user.Id
                     };
                 }
             }
